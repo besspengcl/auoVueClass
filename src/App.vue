@@ -10,7 +10,7 @@ let inputList = ref({
 });
 
 const addUrl = () => {
-  if (inputList.value !== '') {
+  if (inputList.value.title !== '' &&　inputList.value.url) {
     const list = {
       id: crypto.randomUUID(),
       title: inputList.value.title,
@@ -19,9 +19,12 @@ const addUrl = () => {
     urlList.value.unshift(list);
     inputList.value.title = '';
     inputList.value.url = '';
+    localStorage.setItem('urlList', JSON.stringify(urlList.value));
+  }else{
+    alert('標題及網址不得為空')
   }
 
-  localStorage.setItem('urlList', JSON.stringify(urlList.value));
+ 
 };
 
 const deleteOption = (id) => {
